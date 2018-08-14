@@ -168,6 +168,7 @@ def favicon(wiki, soup, domain):
     return 1
 
 def https_token(url):
+    print(url)
     match=re.search('https://|http://',url)
     if match.start(0)==0:
         url=url[match.end(0):]
@@ -348,7 +349,7 @@ def age_of_domain(domain):
 
 def web_traffic(url):
     try:
-        rank = bs4.BeautifulSoup(urllib.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + url).read(), "xml").find("REACH")['RANK']
+        rank = bs4.BeautifulSoup(urllib.request.urlopen("http://data.alexa.com/data?cli=10&dat=s&url=" + url).read(), "xml").find("REACH")['RANK']
     except TypeError:
         return -1
     rank= int(rank)
@@ -450,7 +451,8 @@ def main(url):
     status.append(dns)
 
     status.append(web_traffic(soup))
-    status.append(google_index(url))
+    # status.append(google_index(url))
+    status.append(1)
     status.append(statistical_report(url,hostname))
 
     # print ('\n1. Having IP address\n2. URL Length\n3. URL Shortening service\n4. Having @ symbol\n5. Having double slash\n' \

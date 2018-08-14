@@ -24,7 +24,7 @@ for i in data1:
 	labels.append(i[30])
 data1=np.array(data1)
 features=data1[:,:-1]
-features=features[:,[0,1,2,3,4,5,6,8,9,11,12,13,14,15,16,17,22,23,24,25,27,29]]
+# features=features[:,[0,1,2,3,4,5,6,8,9,11,12,13,14,15,16,17,22,23,24,25,27,29]]
 #print features
 features=np.array(features).astype(np.float)
 
@@ -34,14 +34,14 @@ labels_train=labels[:10000]
 features_test=features[10000:]
 labels_test=labels[10000:]
 
-
-clf = ensemble.ExtraTreesClassifier(n_estimators=57,min_samples_split=2,random_state=40)
+# print(features[0])
+clf = ensemble.ExtraTreesClassifier(n_estimators=57,min_samples_split=2,random_state=83)
 clf.fit(features, labels)
 
 
 print("total=",clf.score(features_test,labels_test))
 
-joblib.dump(clf,'classifier/extratree.pkl')
+joblib.dump(clf,'classifier/extratreeall30.pkl')
 
 
 
